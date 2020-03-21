@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/style.css" />
+		<title>Test</title>
+	</head>
+	<body>
+		<section>
+			<div class="tab__wrapper">
+				<div class="tab-films">
+					<div class="films-button button">
+						<input
+							type="radio"
+							id="films"
+							name="tab"
+							data-tab="tab__film"
+							class="tab__radio"
+							checked
+						/>
+						<label class="films__button tab__button" for="films">Фильмы</label>
+					</div>
+					<div class="tab__element" data-tab="tab__film" data-index="1">
+						<input type="text" class="movie-search" placeholder="поиск" />
+						<ul class="movie-tag__list"></ul>
+						<ul class="movie-cards__list"></ul>
+					</div>
+				</div>
+				<div class="tab-bookmarks">
+					<div class="bookmark-button button">
+						<input
+							type="radio"
+							id="bookmarks"
+							name="tab"
+							data-tab="tab__bookmark"
+							class="tab__radio"
+						/>
+						<label class="bookmarks__button tab__button" for="bookmarks"
+							>Закладки</label
+						>
+					</div>
+					<div
+						class="tab__element"
+						data-tab="tab__bookmark"
+						data-index="1"
+					></div>
+				</div>
+			</div>
+		</section>
+
+		<script src="js/script.js"></script>
+	</body>
+</html>
