@@ -1,38 +1,40 @@
+import { makeCardMovie } from "./make-card.js";
+
 const tabWrapper = document.querySelector(".tab__wrapper");
 
 tabWrapper.addEventListener("click", event => {
 	let target = event.target;
-	const tabIndex = document.querySelectorAll("[data-tab]");
+	const films = document.querySelector(".tab__film");
+	const bookmarks = document.querySelector(".tab__bookmark");
 
-	tabIndex.forEach(tab => {
-		if (target.className === "tab__radio") {
-			tab.style.display = "none";
-		}
-		if (tab.dataset.tab === target.dataset.tab) {
-			tab.style.display = "flex";
-		}
-	});
+	if (target.id === "films") {
+		bookmarks.style.display = "none";
+		films.style.display = "flex";
+	} else if (target.id === "bookmarks") {
+		bookmarks.style.display = "flex";
+		films.style.display = "none";
+	}
 });
 
+// СОЗДАНИЕ КАРТОЧЕК С ТЕГАМИ
+
 const movieTagList = document.querySelector(".movie-tag__list");
+const tagRequest = fetch("../tags.json");
 
-const tagsRequest = fetch("../tags.json").then(response => response.json());
-
-tagsRequest.forEach(value => console.log(value));
-
-// <li class="movie-tag__item">
-// 				<span class="movie-tag__title"></span>
-// 			</li>
-
-// tagsRequest..map(element => {
-// 	movieTagItem.querySelector(".movie-tag__title").textContent = element;
-
-// 	movieTagList.appendChild(movieTagItem);
-// });
+tagRequest
+	.then(response => response.json())
+	.then(tagList => {
+		const tagCard = tagList.map(
+			tag =>
+				`<li class="movie-tag__item">
+				<span class="movie-tag__title">${tag}</span>
+			</li>`
+		);
+		movieTagList.innerHTML = tagCard.join("");
+	});
 
 // РЕАЛИЗАЦИЯ ПОИСКА ПО НАЗВАНИЮ
 
-const movieCardsList = document.querySelector(".movie-cards__list");
 const movieSearch = document.querySelector(".movie-search");
 
 const getMovieTitle = async searchMovie => {
@@ -49,18 +51,9 @@ const getMovieTitle = async searchMovie => {
 		movieMatch = [];
 	}
 
-	additionalHtml(movieMatch);
+	makeCardMovie(movieMatch);
 };
 
-const additionalHtml = movies => {
-	const movieCardHtml = movies.map(
-		card =>
-			`<li class="movie-card">
-				<span class="movie-card__title">${card.title}</span>
-			</li>`
-	);
-
-	movieCardsList.innerHTML = movieCardHtml.join("");
-};
-
-movieSearch.addEventListener("input", () => getMovieTitle(movieSearch.value));
+movieSearch.addEventListener("input", event => {
+	getMovieTitle(movieSearch.value);
+});
