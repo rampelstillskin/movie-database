@@ -1,3 +1,36 @@
+body {
+  background: #fcfcfc;
+  background-size: 300% 300%;
+  -webkit-animation: gradient 15s ease infinite;
+          animation: gradient 15s ease infinite;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+@-webkit-keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .tab__wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -16,15 +49,43 @@
   position: absolute;
 }
 
+.tab__button {
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.4em;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.tab__button:hover {
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+}
+
+.tab__button:active {
+  background-color: gray;
+}
+
 .films-button,
 .bookmark-button {
   width: 150px;
   height: 50px;
-  border: 1px solid black;
-  top: 65px;
   position: absolute;
   margin-left: auto;
   margin-right: auto;
+  top: 65px;
   left: 0;
   right: 0;
 }
@@ -37,34 +98,9 @@
   left: 180px;
 }
 
-.tab__button {
-  width: 150px;
-  height: 50px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.4em;
-  cursor: pointer;
-}
-
-.tab__button:hover {
-  background-color: lightgray;
-}
-
-.tab__button:active {
-  background-color: gray;
-}
-
 #films:checked + .films__button,
 #bookmarks:checked + .bookmarks__button {
-  background-color: gray;
+  background-color: rgba(168, 168, 168, 0.5);
 }
 
 .tab-films {
@@ -97,6 +133,9 @@
   margin-right: auto;
   padding-left: 10px;
   font-size: 1.4em;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .movie-tag__list {
@@ -130,18 +169,25 @@
           align-items: center;
   margin: 3px;
   padding: 3px 10px;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.1em;
   cursor: pointer;
+  -webkit-transition: border-radius 0.8s, -webkit-box-shadow 0.7s;
+  transition: border-radius 0.8s, -webkit-box-shadow 0.7s;
+  transition: border-radius 0.8s, box-shadow 0.7s;
+  transition: border-radius 0.8s, box-shadow 0.7s, -webkit-box-shadow 0.7s;
 }
 
 .movie-tag__list .movie-tag__item:hover {
-  background-color: lightgray;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
 }
 
 .movie-tag__list .movie-tag__item:active {
-  background-color: gray;
+  -webkit-box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+          box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
 .movie-card__list {
@@ -168,35 +214,25 @@
           align-items: center;
   margin: 10px 0;
   padding: 20px 0;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   list-style: none;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.2em;
   text-align: center;
   cursor: pointer;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
-.movie-card-active {
-  width: 500px;
-  height: auto;
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin: 10px 0;
-  padding: 20px 0;
-  border: 1px solid black;
-  list-style: none;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.2em;
-  text-align: center;
-  cursor: pointer;
+.movie-card:hover {
+  border-radius: 30px;
+  -webkit-box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+}
+
+.movie-card:active {
+  -webkit-box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.5);
+          box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.5);
 }
 
 .tab__bookmark {
